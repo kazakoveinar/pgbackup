@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 with open("README.md", "r") as f:
-    long_descriprion = f.read()
+    long_description = f.read()
 
 setup(
     name="pgbackup",
@@ -12,5 +12,13 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/kazakoveinar/pgbackup",
-    package=find_package("src")
+    packages=find_packages("src"),
+    package_dir={"": "src"},
+    install_requres=["boto3"],
+    python_requires = ">=3.6",
+    entry_points={
+        "console_scripts": [
+            "pgbackup=pgbackup.cli:main",
+            ],
+    }
 )
